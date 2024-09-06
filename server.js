@@ -165,12 +165,12 @@ const formatDate = (date) => {
 	const dateCompare = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0, 0)
 
 	if (dateCompare.getTime() === today.getTime()) {
-		return date.toLocaleTimeString()
+		return date.toLocaleTimeString('pt-BR')
 	}
 	if (dateCompare.getTime() === yesterday.getTime()) {
-		return 'Ontem as ' + date.toLocaleTimeString()
+		return 'Ontem as ' + date.toLocaleTimeString('pt-BR')
 	}
-	return date.toLocaleDateString() + ' ' + date.toLocaleTimeString()
+	return date.toLocaleDateString('pt-BR') + ' ' + date.toLocaleTimeString('pt-BR')
 }
 
 server.listen(PORT, () => {
