@@ -4,6 +4,7 @@ const socketIo = require('socket.io')
 const webPush = require('web-push')
 const { v4: uuidv4 } = require('uuid')
 const fs = require('fs')
+const { env } = require('process')
 const files = []
 
 const vapidKeys = {
@@ -19,6 +20,8 @@ const io = socketIo(server)
 const messages = JSON.parse(fs.readFileSync('data.txt', { encoding: 'utf-8' }) || '[]').filter((message) => !message.blob?.type)
 const limitDate = new Date()
 limitDate.setDate(limitDate.getDate() - 5)
+
+const PORT = env.PORT || 3000
 
 const users = [
 	{
@@ -170,6 +173,6 @@ const formatDate = (date) => {
 	return date.toLocaleDateString() + ' ' + date.toLocaleTimeString()
 }
 
-server.listen(3000, () => {
+server.listen(PORT, () => {
 	console.log('listening on *:3000')
 })
