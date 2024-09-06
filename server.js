@@ -65,8 +65,8 @@ io.on('connection', (socket) => {
 		users.forEach((user) => {
 			if (user.id === data.msg.toID && user.hidden && user.subscription) {
 				const payload = JSON.stringify({
-					title: 'Nova Mensagem!',
-					body: 'Você tem uma nova mensagem no chat.',
+					title: 'Nova atualização!',
+					body: 'Você tem uma nova atualização disponível.',
 				})
 
 				webPush.sendNotification(user.subscription, payload).catch((error) => {
@@ -163,8 +163,9 @@ const formatDate = (date) => {
 	const today = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(), 0, 0, 0, 0)
 	const yesterday = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate() - 1, 0, 0, 0, 0)
 	const dateCompare = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0, 0)
-
+        date.setHous(date.getHours() - 3 )
 	if (dateCompare.getTime() === today.getTime()) {
+	
 		return date.toLocaleTimeString('pt-BR')
 	}
 	if (dateCompare.getTime() === yesterday.getTime()) {
