@@ -1,5 +1,5 @@
 const express = require('express')
-const http = require('http')
+const http = require('https')
 const socketIo = require('socket.io')
 const webPush = require('web-push')
 const { v4: uuidv4 } = require('uuid')
@@ -174,5 +174,5 @@ const formatDate = (date) => {
 }
 
 server.listen(PORT, () => {
-	console.log('listening on *:3000')
+	console.log(`listening on *:${PORT}`)
 })
