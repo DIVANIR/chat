@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="chat-container">
+        <div id="messages"></div>
+        <!--audio id="audio-playback" controls></audio-->
+        <div id="status"></div>
+        <form id="chat-form">
+            <!--button id="emoji-button">😀</button--><input id="message-input" autocomplete="off"
+                placeholder="Digite a messagem..." /><label for="btn-files">📎</label><input type="file"
+                id="btn-files" /><button>Enviar</button>
+        </form>
+    </div>
+    <div class="login">
+        <form id="login-form">
+            <input id="login-input" autocomplete="off" placeholder="Digite a senha" /><button>Entrar</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@4.6.2/dist/emoji-button.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
