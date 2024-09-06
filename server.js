@@ -1,5 +1,5 @@
 const express = require('express')
-const http = require('https')
+const http = require('http')
 const socketIo = require('socket.io')
 const webPush = require('web-push')
 const { v4: uuidv4 } = require('uuid')
