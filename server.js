@@ -41,7 +41,7 @@ app.use(express.json())
 
 app.use(express.static('public'))
 
-setInterval(() => fs.writeFile('data.txt', JSON.stringify(messages), (error) => {}), 60000)
+//setInterval(() => fs.writeFile('data.txt', JSON.stringify(messages), (error) => {}), 60000)
 
 io.on('connection', (socket) => {
 	console.log('A user connected')
