@@ -49,6 +49,8 @@ const socket = io()
 
 let userLogin
 
+
+
 form.addEventListener('submit', function (e) {
 	e.preventDefault()
 	sendMessage()
@@ -107,6 +109,11 @@ socket.on('chat messages', function (messages) {
 			socket.emit('received-message', msg.id)
 		}
 	}
+})
+
+socket.on('lastRefresh',date => {
+	const span = document.createElement('span')
+	span.textContent = date
 })
 
 socket.on('status', (users) => {
