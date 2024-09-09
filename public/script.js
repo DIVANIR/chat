@@ -114,7 +114,7 @@ socket.on('chat messages', function (messages) {
 socket.on('lastRefresh',date => {
 	const span = document.createElement('span')
 	span.textContent = date
-	document.querySelector('body').appendChild(span)
+	//document.querySelector('body').appendChild(span)
 })
 
 socket.on('status', (users) => {
