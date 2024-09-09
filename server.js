@@ -7,6 +7,9 @@ const fs = require('fs')
 const { env } = require('process')
 const files = []
 
+
+const lastRefresh = new Date()
+
 const vapidKeys = {
 	publicKey: 'BDRQy3Hko8dmp41t8-UMK1D2fMYU4Wq8NM0LgjaMp1eEt-4N9-7twTwBs8In-WfeFDRqR9pBwNnSz61StugL1JY',
 	privateKey: '0j7Ynlj3YxifVjDpAoT6Tcj6xVdTJfwU56zgKDk1gWo',
@@ -45,6 +48,8 @@ setInterval(() => fs.writeFile('data.txt', JSON.stringify(messages), (error) => 
 
 io.on('connection', (socket) => {
 	console.log('A user connected')
+
+	socket.emit('lastRefresh', lastRegresh)
 
 	socket.on('chat message', (data) => {
 		data.msg.time = new Date()
