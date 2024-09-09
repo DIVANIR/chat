@@ -49,7 +49,7 @@ setInterval(() => fs.writeFile('data.txt', JSON.stringify(messages), (error) => 
 io.on('connection', (socket) => {
 	console.log('A user connected')
 
-	socket.emit('lastRefresh', lastRegresh)
+	socket.emit('lastRefresh', lastRefresh)
 
 	socket.on('chat message', (data) => {
 		data.msg.time = new Date()
