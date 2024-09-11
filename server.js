@@ -130,6 +130,7 @@ app.post('/subscribe', (req, res) => {
 
 app.post('/hidden', (req, res) => {
 	const { hidden, userID } = req.body
+	if(!userID) return
 	users.forEach((user) => {
 		if (user.id === userID) {
 			user.hidden = hidden
