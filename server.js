@@ -139,7 +139,9 @@ app.post('/hidden', (req, res) => {
 			} else {
 				user.status = 'Online'
 			}
+			console.dir(user)
 		}
+		
 	})
 
 	io.emit(
