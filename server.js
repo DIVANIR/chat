@@ -164,7 +164,7 @@ app.get('/file/:id', (req, res) => {
 	}
 })
 
-const formatDate = (date) => {
+const formatDate = (date = new Date()) => {
 	const dt = new Date()
 	const today = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(), 0, 0, 0, 0)
 	const yesterday = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate() - 1, 0, 0, 0, 0)
