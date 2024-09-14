@@ -169,7 +169,7 @@ const formatDate = (date = new Date()) => {
 	const today = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(), 0, 0, 0, 0)
 	const yesterday = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate() - 1, 0, 0, 0, 0)
 	const dateCompare = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0, 0)
-        date?.setHous(date?.getHours() - 3 )
+        date?.setHours(date?.getHours() - 3 )
 	if (dateCompare.getTime() === today.getTime()) {
 	
 		return date.toLocaleTimeString('pt-BR')
