@@ -126,7 +126,7 @@ socket.on('status', (users) => {
 	})
 })
 
-socket.on('file upload', ({ msg }) => {
+/*socket.on('file upload', ({ msg }) => {
 	const item = document.createElement('div')
 	item.className = 'item'
 
@@ -142,7 +142,7 @@ socket.on('file upload', ({ msg }) => {
 	item.appendChild(fileElement)
 	messages.appendChild(item)
 	messages.scrollTop = messages.scrollHeight
-})
+})*/
 
 socket.on('image message', ({ imgBuffer, toID }) => {
 	const imgBlob = new Blob([imgBuffer], { type: 'image/bmp' })
