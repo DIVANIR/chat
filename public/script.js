@@ -49,8 +49,6 @@ const socket = io()
 
 let userLogin
 
-
-
 form.addEventListener('submit', function (e) {
 	e.preventDefault()
 	sendMessage()
