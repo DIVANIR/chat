@@ -48,6 +48,7 @@ setInterval(() => fs.writeFile('data.txt', JSON.stringify(messages), (error) => 
 
 io.on('connection', (socket) => {
 	
+	
 	console.log('A user connected')
 
 	socket.emit('lastRefresh', lastRefresh)
@@ -66,7 +67,7 @@ io.on('connection', (socket) => {
 			data.msg.blob.blob = null
 			data.msg.blob.url = `/file/${id}`
 		}
-		io.emit('chat message', data)
+		//io.emit('chat message', data)
 		messages.push(data)
 		users.forEach((user) => {
 			if (user.id === data.msg.toID && user.hidden && user.subscription) {
