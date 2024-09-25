@@ -21,30 +21,6 @@ trigger?.addEventListener('mousedown', () => {
 		})
 })
 
-trigger?.addEventListener('mouseup', () => {
-	mediaRecorder.stop()
-	mediaRecorder.ondataavailable = (event) => {
-		audioChuncks.push(event.data)
-	}
-
-	mediaRecorder.onstop = () => {
-		const audioBlob = new Blob(audioChuncks, { type: 'audio/webm' })
-		audioChuncks.length = 0
-		const reader = new FileReader()
-
-		reader.onload = function () {
-			const arrayBuffer = reader.result
-			socket.emit('audio message', { arrayBuffer, fromID: userLogin.id, toID: userLogin.id === 1 ? 2 : 1 }) // Envia o áudio via socket
-		}
-		reader.readAsArrayBuffer(audioBlob)
-
-		// Reproduzir localmente
-		/*const audioUrl = URL.createObjectURL(audioBlob)
-		audioPlayback.src = audioUrl
-		console.log(audioUrl)*/
-	}
-})
-
 const socket = io()
 
 let userLogin
@@ -109,7 +85,7 @@ socket.on('chat messages', function (messages) {
 	}
 })
 
-socket.on('lastRefresh',date => {
+socket.on('lastRefresh', (date) => {
 	const span = document.createElement('span')
 	span.textContent = date
 	//document.querySelector('body').appendChild(span)
@@ -160,8 +136,17 @@ const createBallon = (msg) => {
 	if (msg.blob?.type) {
 		debugger
 	}
-	const el = msg.blob?.type?.includes('image') ? 'img' : msg.blob?.type?.includes('video/png') ? 'video' : msg.text ? 'div' : 'a'
+	const el = msg.blob?.type?.includes('image')
+		? 'img'
+		: msg.blob?.type?.includes('video/png')
+		? 'video'
+		: msg.blob?.type?.includes('audio/webm')
+		? 'audio'
+		: msg.text
+		? 'div'
+		: 'a'
 	const ballon = document.createElement(el)
+	ballon.controls = true
 	const time = document.createElement('span')
 	item.className = 'item'
 	ballon.className = 'ballon'
@@ -215,6 +200,36 @@ document.addEventListener('visibilitychange', function () {
 		formLogin.parentElement.style.display = 'flex'
 		//userLogin = null
 		//messages.innerHTML = ''
+	}
+})
+
+trigger?.addEventListener('mouseup', () => {
+	mediaRecorder.stop()
+	mediaRecorder.ondataavailable = (event) => {
+		audioChuncks.push(event.data)
+	}
+
+	mediaRecorder.onstop = async () => {
+		const audioBlob = new Blob(audioChuncks, { type: 'audio/webm' })
+		audioChuncks.length = 0
+		/*const reader = new FileReader()
+
+		reader.onload = function () {
+			const arrayBuffer = reader.result
+			socket.emit('audio message', { arrayBuffer, fromID: userLogin.id, toID: userLogin.id === 1 ? 2 : 1 }) // Envia o áudio via socket
+		}
+		reader.readAsArrayBuffer(audioBlob)
+
+		// Reproduzir localmente
+		/*const audioUrl = URL.createObjectURL(audioBlob)
+		audioPlayback.src = audioUrl
+		console.log(audioUrl)*/
+
+		const text = input.value
+		const blob = await getUrl(audioBlob)
+		const msg = { text, blob, fromID: userLogin.id, toID: userLogin.id === 1 ? 2 : 1 }
+
+		socket.emit('chat message', { msg })
 	}
 })
 
