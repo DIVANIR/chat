@@ -47,6 +47,7 @@ app.use(express.json())
 setInterval(() => fs.writeFile('data.txt', JSON.stringify(messages), (error) => {}), 60000)
 
 io.on('connection', (socket) => {
+	return
 	console.log('A user connected')
 
 	socket.emit('lastRefresh', lastRefresh)
@@ -200,6 +201,6 @@ const formatDate = (date = new Date()) => {
 	return date.toLocaleDateString('pt-BR') + ' ' + date.toLocaleTimeString('pt-BR')
 }
 
-server.listen(PORT, () => {
+/*server.listen(PORT, () => {
 	console.log(`listening on *:${PORT}`)
-})
+})*/
