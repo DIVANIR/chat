@@ -149,7 +149,7 @@ const createBallon = (msg) => {
 	ballon.controls = true
 	const time = document.createElement('span')
 	item.className = 'item'
-	ballon.className = 'ballon'
+	ballon.className = el === 'audio' ? '' : 'ballon'
 	ballon.textContent = msg.text || msg.blob.name
 	if (msg.text === 'Essa mensagem foi apagada') {
 		ballon.style.fontStyle = 'italic'
