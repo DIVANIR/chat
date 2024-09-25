@@ -113,7 +113,7 @@ io.on('connection', (socket) => {
 	socket.on('disconnect', () => {
 		console.log('User disconnected')
 		users.forEach((user) => {
-		if (user.idSocket === ) {
+		if (user.idSocket === socket.id) {
 			user.status = `Visto por último: ${formatDate(new Date())}`
 		}
 		
