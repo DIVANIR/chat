@@ -42,7 +42,7 @@ const users = [
 ]
 app.use(express.json())
 
-app.use(express.static('public'))
+//app.use(express.static('public'))
 
 setInterval(() => fs.writeFile('data.txt', JSON.stringify(messages), (error) => {}), 60000)
 
