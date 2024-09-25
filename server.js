@@ -99,7 +99,7 @@ io.on('connection', (socket) => {
 			'chat messages',
 			messages.filter((message) => (message.msg.fromID === id || message.msg.toID === id) && new Date(message.msg.time).getTime() > limitDate.getTime())
 		)
-		const user = users.find((user) => user.id === req.body.id)
+		const user = users.find((user) => user.id === id)
 		user.idSocket = socket.id
 	})
 
