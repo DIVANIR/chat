@@ -94,10 +94,13 @@ io.on('connection', (socket) => {
 	})
 
 	socket.on('id', (id) => {
+		
 		socket.emit(
 			'chat messages',
 			messages.filter((message) => (message.msg.fromID === id || message.msg.toID === id) && new Date(message.msg.time).getTime() > limitDate.getTime())
 		)
+		const user = users.find((user) => user.id === req.body.id)
+		user.idSocket = socket.id
 	})
 
 	socket.on('file upload', (file) => {
@@ -109,6 +112,21 @@ io.on('connection', (socket) => {
 
 	socket.on('disconnect', () => {
 		console.log('User disconnected')
+		users.forEach((user) => {
+		if (user.idSocket === ) {
+			user.status = `Visto por último: ${formatDate(new Date())}`
+		}
+		
+	})
+
+	io.emit(
+		'status',
+		users.map((user) => {
+			const { status, id } = user
+			return { status, id }
+		})
+	)
+		
 	})
 })
 
