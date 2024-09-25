@@ -117,7 +117,7 @@ socket.on('lastRefresh',date => {
 
 socket.on('status', (users) => {
 	users.forEach((user) => {
-		if ((user.id = userLogin.id === 1 ? 2 : 1)) {
+		if (user.id !== userLogin.id) {
 			document.querySelector('#status').textContent = user.status
 			if (user.status === 'Online') {
 				socket.emit('id', userLogin.id)
