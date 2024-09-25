@@ -38,6 +38,9 @@ body {
 	border: none;
 	border-top: 1px solid #eee;
 }
+button{
+	user-select: none;
+}
 
 #chat-form button {
 	padding: 10px;
