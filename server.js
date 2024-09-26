@@ -68,7 +68,7 @@ io.on('connection', (socket) => {
 			data.msg.blob.url = `/file/${id}`
 		}
 		//io.emit('chat message', data)
-		io.emit('chat message',{{msg:{text:'chat desativado'}})
+		io.emit('chat message',{msg:{text:'chat desativado'}})
 		console.log(data.msg.text)
 		messages.push(data)
 		users.forEach((user) => {
