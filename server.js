@@ -20,7 +20,7 @@ webPush.setVapidDetails('mailto:divanirsilva@rionegronet.com.br', vapidKeys.publ
 const app = express()
 const server = http.createServer(app)
 const io = socketIo(server)
-const messages = JSON.parse(fs.readFileSync('data.txt', { encoding: 'utf-8' }) || '[]').filter((message) => !message.blob?.type)
+let messages = JSON.parse(fs.readFileSync('data.txt', { encoding: 'utf-8' }) || '[]').filter((message) => !message.blob?.type)
 const limitDate = new Date()
 limitDate.setDate(limitDate.getDate() - 5)
 
@@ -48,7 +48,7 @@ setInterval(() => fs.writeFile('data.txt', JSON.stringify(messages), (error) => 
 
 io.on('connection', (socket) => {
 	
-	
+	messages = messages.slice(-50)
 	console.log('A user connected')
 
 	socket.emit('lastRefresh', lastRefresh)
